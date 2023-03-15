@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-var speed = 600
+@export var speed = 600
 
 func _ready():
 	velocity = Vector2.ZERO
-	velocity.y= 1
+	velocity.y= 1 # Why?
 
 func _physics_process(delta):
 	move_and_slide()
