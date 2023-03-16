@@ -1,38 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://g2avmdk05nmi"]
+[gd_scene load_steps=8 format=3 uid="uid://g2avmdk05nmi"]
 
 [ext_resource type="Script" path="res://Игрок/Player.gd" id="1_3414s"]
-[ext_resource type="Texture2D" uid="uid://b86wkxa8wtjrk" path="res://ИГрок.png" id="1_y7yc4"]
+[ext_resource type="Texture2D" uid="uid://dymhqbyfb8nk5" path="res://Игрок/ИГрок.png" id="2_w48xd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfw0j"]
-radius = 21.0
-height = 64.64
+radius = 7.0
+height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv0g2"]
+atlas = ExtResource("2_w48xd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiud3"]
+atlas = ExtResource("2_w48xd")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38r0x"]
+atlas = ExtResource("2_w48xd")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gi6p6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_y7yc4")
+"texture": SubResource("AtlasTexture_wv0g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiud3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"go",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38r0x")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_3414s")
+speed = 50
+rotation_speed = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.484, 0)
+position = Vector2(2, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_jfw0j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
 rotation = 1.5708
-scale = Vector2(3, 3.858)
-skew = 0.00174533
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_gi6p6")
+animation = &"go"
 offset = Vector2(0, -2)
 
 [node name="M" type="Marker2D" parent="."]
-position = Vector2(61, 0)
+position = Vector2(10, 0)

@@ -4,12 +4,15 @@ extends CharacterBody2D
 
 func _ready():
 	velocity = Vector2.ZERO
-	velocity.y= 1 # Why?
+	velocity.x= -speed # Why?
 
 func _physics_process(delta):
-	move_and_slide()
-	#var collision = move_and_collide(velocity * speed * delta)
-	#if collision:
-	#	var reflect = collision.remainder.bounce(collision.normal)
-	#	velocity = velocity.bounce(collision.normal)
-	#	move_and_collide(reflect)
+	var collision_info = move_and_collide(velocity * delta)
+	if collision_info:
+		velocity = velocity.bounce(collision_info.get_normal())
+	if (collision_info==$CharacterBody2D):
+		#queue_free()
+		pass
+	await get_tree().create_timer(5).timeout
+	queue_free()
+	
